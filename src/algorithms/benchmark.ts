@@ -5,8 +5,8 @@ const CHARSET =
   'abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,!? '
 
 /**
- * Generates a pseudo-random string of a given byte size.
- * We periodically inject the pattern so there are guaranteed matches
+ * generates a pseudo-random string of a given byte size.
+ * periodically inject the pattern so there are guaranteed matches
  * to find, making the benchmark realistic rather than a pure miss scenario.
  *
  * @param targetBytes  - approximate size in bytes
@@ -18,7 +18,7 @@ function generateText(targetBytes: number, injectPattern: string): string {
   const injectEvery = 5000 // inject one match every 5000 chars
 
   while (total < targetBytes) {
-    // Random chunk of ~500 characters
+    // random chunk of ~500 characters
     const chunkSize = Math.min(500, targetBytes - total)
     let chunk = ''
     for (let i = 0; i < chunkSize; i++) {
@@ -27,7 +27,7 @@ function generateText(targetBytes: number, injectPattern: string): string {
     chunks.push(chunk)
     total += chunkSize
 
-    // Inject the pattern periodically
+    // inject the pattern periodically
     if (total % injectEvery < 500 && injectPattern.length > 0) {
       chunks.push(injectPattern)
       total += injectPattern.length
@@ -43,11 +43,11 @@ const SIZE_CONFIGS: { label: FileSizeLabel; bytes: number }[] = [
 ]
 
 /**
- * Runs KMP on a pre-generated text and times it precisely.
- * We generate the text outside the timed block so we're only
+ * runs KMP on a pre-generated text and times it precisely.
+ * generate the text outside the timed block so we're only
  * measuring the search, not text generation.
  *
- * Big-O reminder shown in UI: O(n + m)
+ * big-O reminder shown in UI: O(n + m)
  * n = text length, m = pattern length
  */
 function runSingle(
@@ -69,12 +69,12 @@ function runSingle(
 }
 
 /**
- * Runs the full benchmark suite: 1MB and 10MB.
+ * runs the full benchmark suite: 1MB and 10MB.
  *
- * Accepts an optional progress callback so the UI can show
+ * accepts an optional progress callback so the UI can show
  * "generating 10MB text..." before the run starts.
  *
- * Returns a BenchmarkResult with both runs for display.
+ * returns a BenchmarkResult with both runs for display.
  */
 export async function runBenchmark(
   pattern: string,
@@ -85,7 +85,7 @@ export async function runBenchmark(
   for (const { label, bytes } of SIZE_CONFIGS) {
     onProgress?.(`Generating ${label} text...`)
 
-    // Yield to the browser so the UI can update before the heavy work
+    // yield to the browser so the UI can update before the heavy work
     await new Promise((resolve) => setTimeout(resolve, 50))
 
     const text = generateText(bytes, pattern)
@@ -103,8 +103,8 @@ export async function runBenchmark(
 }
 
 /**
- * Returns a human-readable Big-O analysis comparing the two runs.
- * We verify that doubling n roughly doubles the time (linear behaviour).
+ * returns a human-readable Big-O analysis comparing the two runs.
+ * verify that doubling n roughly doubles the time (linear behaviour).
  */
 export function analyzeBigO(result: BenchmarkResult): {
   complexity: string
