@@ -3,14 +3,17 @@
   import cytoscape from 'cytoscape'
   import type { DFA } from '../types'
 
+  // ─── Props ──────────────────────────────────────────────────────────────────
   interface Props {
     dfa: DFA | null
     activeState: number
   }
   let { dfa, activeState }: Props = $props()
 
+
   let container: HTMLDivElement
   let cy: cytoscape.Core | null = null
+
 
   const COLOR = {
     nodeBg: '#27272a',        // zinc-800
@@ -25,6 +28,7 @@
     edgeLabel: '#a1a1aa',     // zinc-400
     bg: 'transparent',
   }
+
 
   function buildElements(dfa: DFA): cytoscape.ElementDefinition[] {
     const elements: cytoscape.ElementDefinition[] = []
@@ -67,6 +71,7 @@
 
     return elements
   }
+
   function initCytoscape(dfa: DFA) {
     if (cy) {
       cy.destroy()
@@ -157,6 +162,8 @@
       autoungrabify: false,
     })
   }
+
+
   function highlightState(stateId: number) {
     if (!cy) return
     cy.nodes().removeClass('active-node')
@@ -167,6 +174,7 @@
       node.addClass('active-node')
     }
   }
+
 
   $effect(() => {
     if (dfa && container) {
@@ -191,13 +199,13 @@
   <div class="flex items-center justify-between">
     <div>
       <h2 class="text-lg font-semibold text-white">DFA Visualization</h2>
-      <p class="text-sm text-zinc-400">
+      <p class="text-base text-slate-300">
         Each circle is a state. The highlighted state shows where the machine is
         right now.
       </p>
     </div>
     {#if dfa}
-      <div class="flex gap-3 text-xs text-zinc-400 shrink-0">
+      <div class="flex gap-3 text-sm text-slate-400 shrink-0">
         <span class="flex items-center gap-1">
           <span class="inline-block w-3 h-3 rounded-full border-2 border-amber-500"></span>
           Start
@@ -234,8 +242,8 @@
 
   <!-- State info -->
   {#if dfa}
-    <div class="rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2">
-      <p class="text-xs text-zinc-400">
+    <div class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2">
+      <p class="text-sm text-slate-400">
         <span class="text-white font-medium">{dfa.states.length} states</span>
         &nbsp;·&nbsp;
         <span class="text-white font-medium">{dfa.alphabet.join(', ')}</span> alphabet

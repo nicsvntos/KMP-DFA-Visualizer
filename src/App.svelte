@@ -12,7 +12,6 @@
     getStatus,
     getDFA,
     getCurrentStepIndex,
-    getPattern,
   } from './stores/kmpStore.svelte'
 
   type Tab = 'visualizer' | 'benchmark' | 'validator'
@@ -26,7 +25,6 @@
 
   let steps = $derived(getSteps())
   let matches = $derived(getMatches())
-  let status = $derived(getStatus())
   let dfa = $derived(getDFA())
   let currentStepIndex = $derived(getCurrentStepIndex())
   let currentStep = $derived(
@@ -100,17 +98,14 @@
       style="
         opacity: {sliding ? 0 : 1};
         transform: {sliding
-          ? slideDirection === 'left'
-            ? 'translateX(-32px)'
-            : 'translateX(32px)'
+          ? slideDirection === 'left' ? 'translateX(-32px)' : 'translateX(32px)'
           : 'translateX(0)'};
       "
     >
 
-      {#if activeTab === 'visualizer'}
+      <!-- Visualizer — always mounted, hidden when inactive -->
+      <div style="display: {activeTab === 'visualizer' ? 'block' : 'none'}">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-
-          <!-- Left panel -->
           <div class="lg:col-span-3 flex flex-col gap-6">
             <div class="rounded-xl border border-slate-700 bg-slate-900 p-4">
               <PatternInput onReady={handleReady} />
@@ -122,7 +117,6 @@
             {/if}
           </div>
 
-          <!-- Right panel -->
           <div class="lg:col-span-9 flex flex-col gap-6">
             {#if !isReady}
               <div class="rounded-xl border border-slate-700 bg-slate-900 p-10
@@ -170,31 +164,35 @@
             {/if}
           </div>
         </div>
+      </div>
 
-      {:else if activeTab === 'benchmark'}
+      <!-- Benchmark — always mounted, hidden when inactive -->
+      <div style="display: {activeTab === 'benchmark' ? 'block' : 'none'}">
         <div class="max-w-2xl mx-auto">
           <div class="rounded-xl border border-slate-700 bg-slate-900 p-6">
             <BenchmarkPanel pattern={currentPattern} text={currentText} />
             {#if !currentPattern}
-              <p class="text-xs text-slate-600 mt-4 text-center">
+              <p class="text-sm text-slate-600 mt-4 text-center">
                 Go to the Visualizer tab first and enter a pattern to enable benchmarking.
               </p>
             {/if}
           </div>
         </div>
+      </div>
 
-      {:else if activeTab === 'validator'}
+      <!-- Validator — always mounted, hidden when inactive -->
+      <div style="display: {activeTab === 'validator' ? 'block' : 'none'}">
         <div class="max-w-2xl mx-auto">
           <div class="rounded-xl border border-slate-700 bg-slate-900 p-6">
             <LogicValidator text={currentText} pattern={currentPattern} />
             {#if !currentText}
-              <p class="text-xs text-slate-600 mt-4 text-center">
+              <p class="text-sm text-slate-600 mt-4 text-center">
                 Go to the Visualizer tab first and load some text to enable validation.
               </p>
             {/if}
           </div>
         </div>
-      {/if}
+      </div>
 
     </div>
   </main>

@@ -15,7 +15,6 @@
   }
   let { pattern, text }: Props = $props()
 
-  // ─── Local derived state ────────────────────────────────────────────────────
   let result = $derived(getResult())
   let isRunning = $derived(getIsRunning())
   let progressMessage = $derived(getProgressMessage())
@@ -38,39 +37,33 @@
   <!-- Header -->
   <div>
     <h2 class="text-lg font-semibold text-white">Performance Benchmark</h2>
-    <p class="text-sm text-slate-400 mt-1">
+    <p class="text-base text-slate-300 mt-1">
       Runs KMP on 1 MB and 10 MB of synthetic text to demonstrate
       <span class="text-indigo-400 font-mono">O(n + m)</span> linear scaling.
     </p>
   </div>
 
   <!-- Context banner -->
-  {#if pattern || text}
-    <div class="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 flex flex-col gap-1.5">
-      <p class="text-xs font-medium text-slate-400">From Visualizer</p>
-      <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs font-mono">
-        <span class="text-slate-400">
-          Pattern:
-          {#if pattern}
-            <span class="text-indigo-300 font-semibold">'{pattern}'</span>
-          {:else}
-            <span class="text-slate-600">none</span>
-          {/if}
-        </span>
-        <span class="text-slate-400">
-          Text:
-          {#if text}
-            <span class="text-slate-300">
-              '{text.length > 40 ? text.slice(0, 40) + '…' : text}'
-            </span>
-            <span class="text-slate-500 ml-1">({text.length} chars)</span>
-          {:else}
-            <span class="text-slate-600">none</span>
-          {/if}
-        </span>
-      </div>
-    </div>
-  {/if}
+  <div class="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 flex items-center gap-3">
+    <p class="text-sm font-medium text-slate-400 shrink-0">From Visualizer</p>
+    <span class="text-slate-600">·</span>
+    <p class="text-sm font-mono">
+      Pattern:
+      {#if pattern}
+        <span class="text-indigo-300 font-semibold">'{pattern}'</span>
+      {:else}
+        <span class="text-slate-600">none</span>
+      {/if}
+    </p>
+    <span class="text-slate-600">·</span>
+    <p class="text-sm text-slate-400">
+      {#if text}
+        <span class="text-slate-300">{text.length.toLocaleString()} chars loaded</span>
+      {:else}
+        <span class="text-slate-600">no text loaded</span>
+      {/if}
+    </p>
+  </div>
 
   <!-- Run button -->
   <button
@@ -79,7 +72,7 @@
     class="w-full rounded-md py-2.5 px-4 text-sm font-medium transition-colors
            focus:outline-none focus:ring-2 focus:ring-indigo-400
            {isRunning || pattern.length === 0
-             ? 'bg-zinc-800 text-zinc-500 cursor-not-allowed border border-zinc-700'
+             ? 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700'
              : 'bg-indigo-600 hover:bg-indigo-500 text-white'}"
   >
     {#if isRunning}
@@ -106,34 +99,30 @@
 
   <!-- Results -->
   {#if result}
-    <!-- Run cards -->
     <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
       {#each result.runs as run}
-        <div class="rounded-lg border border-zinc-700 bg-zinc-900 p-4 flex flex-col gap-3">
-          <!-- Size badge -->
+        <div class="rounded-lg border border-slate-700 bg-slate-900 p-4 flex flex-col gap-3">
           <div class="flex items-center justify-between">
-            <span class="text-xs font-bold px-2 py-0.5 rounded bg-indigo-900 text-indigo-300 border border-indigo-700">
+            <span class="text-sm font-bold px-2 py-0.5 rounded bg-indigo-900 text-indigo-300 border border-indigo-700">
               {run.fileSizeLabel}
             </span>
-            <span class="text-xs text-zinc-500">{formatBytes(run.fileSizeBytes)}</span>
+            <span class="text-sm text-slate-500">{formatBytes(run.fileSizeBytes)}</span>
           </div>
-
-          <!-- Stats -->
           <div class="flex flex-col gap-1.5">
-            <div class="flex justify-between text-sm">
-              <span class="text-zinc-400">Duration</span>
+            <div class="flex justify-between text-base">
+              <span class="text-slate-400">Duration</span>
               <span class="text-white font-mono font-bold">{formatMs(run.durationMs)}</span>
             </div>
-            <div class="flex justify-between text-sm">
-              <span class="text-zinc-400">Characters scanned</span>
+            <div class="flex justify-between text-base">
+              <span class="text-slate-400">Characters scanned</span>
               <span class="text-white font-mono">{run.textLength.toLocaleString()}</span>
             </div>
-            <div class="flex justify-between text-sm">
-              <span class="text-zinc-400">Matches found</span>
+            <div class="flex justify-between text-base">
+              <span class="text-slate-400">Matches found</span>
               <span class="text-green-400 font-mono font-bold">{run.matchCount}</span>
             </div>
-            <div class="flex justify-between text-sm">
-              <span class="text-zinc-400">Throughput</span>
+            <div class="flex justify-between text-base">
+              <span class="text-slate-400">Throughput</span>
               <span class="text-white font-mono">
                 {run.durationMs > 0
                   ? `${((run.textLength / run.durationMs) * 1000 / 1_000_000).toFixed(1)} M chars/s`
@@ -150,24 +139,22 @@
       <div class="rounded-lg border border-indigo-800 bg-indigo-950 p-4 flex flex-col gap-3">
         <div class="flex items-center gap-2">
           <span class="text-indigo-300 font-mono font-bold text-base">{analysis.complexity}</span>
-          <span class="text-xs text-indigo-400">Analysis</span>
+          <span class="text-sm text-indigo-400">Analysis</span>
         </div>
-        <p class="text-sm text-indigo-200 leading-relaxed">{analysis.explanation}</p>
-
-        <!-- Size vs time ratio comparison -->
+        <p class="text-base text-indigo-200 leading-relaxed">{analysis.explanation}</p>
         <div class="grid grid-cols-2 gap-3 mt-1">
           <div class="rounded-md bg-indigo-900 bg-opacity-50 p-3 text-center">
-            <p class="text-xs text-indigo-400 mb-1">File size ratio</p>
+            <p class="text-sm text-indigo-400 mb-1">File size ratio</p>
             <p class="text-xl font-bold font-mono text-white">10×</p>
-            <p class="text-xs text-indigo-400">1 MB → 10 MB</p>
+            <p class="text-sm text-indigo-400">1 MB → 10 MB</p>
           </div>
           <div class="rounded-md bg-indigo-900 bg-opacity-50 p-3 text-center">
-            <p class="text-xs text-indigo-400 mb-1">Time ratio</p>
+            <p class="text-sm text-indigo-400 mb-1">Time ratio</p>
             <p class="text-xl font-bold font-mono
                       {analysis.ratio <= 15 ? 'text-green-400' : 'text-amber-400'}">
               {analysis.ratio}×
             </p>
-            <p class="text-xs text-indigo-400">
+            <p class="text-sm text-indigo-400">
               {analysis.ratio <= 15 ? 'Confirms linear' : 'Near-linear'}
             </p>
           </div>
@@ -176,37 +163,37 @@
     {/if}
 
     <!-- Big-O reference table -->
-    <div class="rounded-lg border border-zinc-700 bg-zinc-900 p-4">
-      <p class="text-xs font-medium text-zinc-400 mb-3">Big-O Complexity Reference</p>
-      <table class="w-full text-xs">
+    <div class="rounded-lg border border-slate-700 bg-slate-900 p-4">
+      <p class="text-base font-medium text-slate-400 mb-3">Big-O Complexity Reference</p>
+      <table class="w-full text-sm">
         <thead>
-          <tr class="text-zinc-500 border-b border-zinc-800">
+          <tr class="text-slate-500 border-b border-slate-800">
             <th class="text-left pb-2 font-medium">Algorithm</th>
             <th class="text-left pb-2 font-medium">Best</th>
             <th class="text-left pb-2 font-medium">Worst</th>
             <th class="text-left pb-2 font-medium">Space</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-zinc-800">
-          <tr class="text-zinc-300">
+        <tbody class="divide-y divide-slate-800">
+          <tr class="text-slate-300">
             <td class="py-2 font-medium text-indigo-400">KMP (this app)</td>
             <td class="py-2 font-mono">O(n + m)</td>
             <td class="py-2 font-mono">O(n + m)</td>
             <td class="py-2 font-mono">O(m)</td>
           </tr>
-          <tr class="text-zinc-400">
+          <tr class="text-slate-400">
             <td class="py-2">Brute Force</td>
             <td class="py-2 font-mono">O(n)</td>
             <td class="py-2 font-mono text-red-400">O(n · m)</td>
             <td class="py-2 font-mono">O(1)</td>
           </tr>
-          <tr class="text-zinc-400">
+          <tr class="text-slate-400">
             <td class="py-2">Boyer-Moore</td>
             <td class="py-2 font-mono text-green-400">O(n/m)</td>
             <td class="py-2 font-mono">O(n · m)</td>
             <td class="py-2 font-mono">O(m + σ)</td>
           </tr>
-          <tr class="text-zinc-400">
+          <tr class="text-slate-400">
             <td class="py-2">Rabin-Karp</td>
             <td class="py-2 font-mono">O(n + m)</td>
             <td class="py-2 font-mono text-red-400">O(n · m)</td>
@@ -214,13 +201,12 @@
           </tr>
         </tbody>
       </table>
-      <p class="text-xs text-zinc-600 mt-2">n = text length · m = pattern length · σ = alphabet size</p>
+      <p class="text-sm text-slate-600 mt-2">n = text length · m = pattern length · σ = alphabet size</p>
     </div>
 
-    <!-- Clear button -->
     <button
       onclick={clearResults}
-      class="text-xs text-zinc-500 hover:text-zinc-300 transition-colors underline underline-offset-2 self-start"
+      class="text-sm text-slate-500 hover:text-slate-300 transition-colors underline underline-offset-2 self-start"
     >
       Clear results
     </button>

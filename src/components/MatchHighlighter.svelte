@@ -1,5 +1,7 @@
 <script lang="ts">
   import type { MatchResult, KMPStep } from '../types'
+
+  // ─── Props ──────────────────────────────────────────────────────────────────
   interface Props {
     text: string
     pattern: string
@@ -8,7 +10,8 @@
   }
   let { text, pattern, matches, currentStep }: Props = $props()
 
-  // Build a set of match ranges for O(1) lookup
+
+  // build a set of match ranges for O(1) lookup
   let matchRanges = $derived(() => {
     const ranges: { start: number; end: number }[] = []
     for (const m of matches) {
@@ -17,7 +20,7 @@
     return ranges
   })
 
-  // Current scanning window — where the pattern is currently being compared
+  // current scanning window where the pattern is currently being compared
   let scanStart = $derived(() => {
     if (!currentStep) return -1
     return currentStep.textIndex - currentStep.patternIndex + 1
@@ -28,7 +31,7 @@
     return currentStep.textIndex
   })
 
-  // Segment the text into labeled spans for rendering
+  // segment the text into labeled spans for rendering
   type SpanKind = 'match' | 'active' | 'scanning' | 'normal'
 
   interface TextSpan {
@@ -81,18 +84,18 @@
     </div>
 
     <!-- Stats row -->
-    <div class="flex gap-3 text-xs shrink-0">
+    <div class="flex gap-3 text-sm shrink-0">
       <span class="flex items-center gap-1">
         <span class="inline-block w-3 h-2 rounded-sm bg-indigo-500 opacity-80"></span>
-        <span class="text-zinc-400">Scanning</span>
+        <span class="text-slate-400">Scanning</span>
       </span>
       <span class="flex items-center gap-1">
         <span class="inline-block w-3 h-2 rounded-sm bg-amber-400"></span>
-        <span class="text-zinc-400">Current char</span>
+        <span class="text-slate-400">Current char</span>
       </span>
       <span class="flex items-center gap-1">
         <span class="inline-block w-3 h-2 rounded-sm bg-green-500"></span>
-        <span class="text-zinc-400">Match</span>
+        <span class="text-slate-400">Match</span>
       </span>
     </div>
   </div>
@@ -100,17 +103,17 @@
   <!-- Match count + progress -->
   {#if text.length > 0}
     <div class="flex items-center gap-3">
-      <div class="flex-1 h-1.5 rounded-full bg-zinc-800 overflow-hidden">
+      <div class="flex-1 h-1.5 rounded-full bg-slate-800 overflow-hidden">
         <div
           class="h-full rounded-full bg-indigo-500 transition-all duration-150"
           style="width: {progress}%"
         ></div>
       </div>
-      <span class="text-xs text-zinc-400 shrink-0">
+      <span class="text-sm text-slate-400 shrink-0">
         {progress}% scanned
       </span>
       {#if matchCount > 0}
-        <span class="text-xs text-green-400 font-medium shrink-0">
+        <span class="text-sm text-green-400 font-medium shrink-0">
           {matchCount} match{matchCount !== 1 ? 'es' : ''} found
         </span>
       {/if}
@@ -119,22 +122,22 @@
 
   <!-- Text display -->
   <div
-    class="flex-1 rounded-lg border border-zinc-700 bg-zinc-950 p-4 overflow-auto"
+    class="flex-1 rounded-lg border border-slate-700 bg-slate-950 p-4 overflow-auto"
     style="min-height: 200px;"
   >
     {#if !text}
-      <p class="text-zinc-600 text-sm">No text loaded yet.</p>
+      <p class="text-slate-600 text-base">No text loaded yet.</p>
     {:else}
-      <p class="font-mono text-sm leading-7 break-all whitespace-pre-wrap select-text">
+      <p class="font-mono text-base leading-7 break-all whitespace-pre-wrap select-text">
         {#each spans() as span (span.index)}
           {#if span.kind === 'match'}
             <span
-              class="bg-green-500 text-zinc-950 font-bold rounded-sm px-px"
+              class="bg-green-500 text-slate-950 font-bold rounded-sm px-px"
               title="Match at index {span.index}"
             >{span.char}</span>
           {:else if span.kind === 'active'}
             <span
-              class="bg-amber-400 text-zinc-950 font-bold rounded-sm px-px ring-1 ring-amber-300"
+              class="bg-amber-400 text-slate-950 font-bold rounded-sm px-px ring-1 ring-amber-300"
               title="Currently comparing index {span.index}"
             >{span.char}</span>
           {:else if span.kind === 'scanning'}
@@ -143,7 +146,7 @@
               title="In scan window"
             >{span.char}</span>
           {:else}
-            <span class="text-zinc-300">{span.char}</span>
+            <span class="text-slate-300">{span.char}</span>
           {/if}
         {/each}
       </p>
@@ -152,8 +155,8 @@
 
   <!-- Current step info -->
   {#if currentStep}
-    <div class="rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2 text-xs font-mono">
-      <div class="flex flex-wrap gap-x-4 gap-y-1 text-zinc-400">
+    <div class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-sm font-mono">
+      <div class="flex flex-wrap gap-x-4 gap-y-1 text-slate-400">
         <span>
           text[<span class="text-white">{currentStep.textIndex}</span>]
           = <span class="text-amber-400 font-bold">'{text[currentStep.textIndex]}'</span>
@@ -178,13 +181,11 @@
 
   <!-- Match list -->
   {#if matches.length > 0}
-    <div class="rounded-md border border-zinc-700 bg-zinc-900 p-3">
-      <p class="text-xs font-medium text-zinc-400 mb-2">All matches found so far</p>
+    <div class="rounded-md border border-slate-700 bg-slate-900 p-3">
+      <p class="text-sm font-medium text-slate-400 mb-2">All matches found so far</p>
       <div class="flex flex-wrap gap-2">
         {#each matches as m}
-          <span
-            class="text-xs font-mono px-2 py-0.5 rounded bg-green-900 text-green-300 border border-green-700"
-          >
+          <span class="text-sm font-mono px-2 py-0.5 rounded bg-green-900 text-green-300 border border-green-700">
             index {m.index}
           </span>
         {/each}
