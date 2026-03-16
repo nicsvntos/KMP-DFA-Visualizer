@@ -11,9 +11,11 @@
 
   interface Props {
     pattern: string
+    text: string
   }
-  let { pattern }: Props = $props()
+  let { pattern, text }: Props = $props()
 
+  // ─── Local derived state ────────────────────────────────────────────────────
   let result = $derived(getResult())
   let isRunning = $derived(getIsRunning())
   let progressMessage = $derived(getProgressMessage())
@@ -36,11 +38,39 @@
   <!-- Header -->
   <div>
     <h2 class="text-lg font-semibold text-white">Performance Benchmark</h2>
-    <p class="text-sm text-zinc-400 mt-1">
+    <p class="text-sm text-slate-400 mt-1">
       Runs KMP on 1 MB and 10 MB of synthetic text to demonstrate
       <span class="text-indigo-400 font-mono">O(n + m)</span> linear scaling.
     </p>
   </div>
+
+  <!-- Context banner -->
+  {#if pattern || text}
+    <div class="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 flex flex-col gap-1.5">
+      <p class="text-xs font-medium text-slate-400">From Visualizer</p>
+      <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs font-mono">
+        <span class="text-slate-400">
+          Pattern:
+          {#if pattern}
+            <span class="text-indigo-300 font-semibold">'{pattern}'</span>
+          {:else}
+            <span class="text-slate-600">none</span>
+          {/if}
+        </span>
+        <span class="text-slate-400">
+          Text:
+          {#if text}
+            <span class="text-slate-300">
+              '{text.length > 40 ? text.slice(0, 40) + '…' : text}'
+            </span>
+            <span class="text-slate-500 ml-1">({text.length} chars)</span>
+          {:else}
+            <span class="text-slate-600">none</span>
+          {/if}
+        </span>
+      </div>
+    </div>
+  {/if}
 
   <!-- Run button -->
   <button

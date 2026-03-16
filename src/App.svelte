@@ -174,7 +174,7 @@
       {:else if activeTab === 'benchmark'}
         <div class="max-w-2xl mx-auto">
           <div class="rounded-xl border border-slate-700 bg-slate-900 p-6">
-            <BenchmarkPanel pattern={currentPattern} />
+            <BenchmarkPanel pattern={currentPattern} text={currentText} />
             {#if !currentPattern}
               <p class="text-xs text-slate-600 mt-4 text-center">
                 Go to the Visualizer tab first and enter a pattern to enable benchmarking.
@@ -186,7 +186,7 @@
       {:else if activeTab === 'validator'}
         <div class="max-w-2xl mx-auto">
           <div class="rounded-xl border border-slate-700 bg-slate-900 p-6">
-            <LogicValidator text={currentText} />
+            <LogicValidator text={currentText} pattern={currentPattern} />
             {#if !currentText}
               <p class="text-xs text-slate-600 mt-4 text-center">
                 Go to the Visualizer tab first and load some text to enable validation.
