@@ -1,47 +1,124 @@
-# Svelte + TS + Vite
+# KMP DFA Visualizer
 
-This template should help get you started developing with Svelte and TypeScript in Vite.
+An interactive visualizer for the Knuth-Morris-Pratt (KMP) string matching algorithm with DFA (Deterministic Finite Automaton) graph visualization. Built with Svelte 5, TypeScript, and Tailwind CSS.
 
-## Recommended IDE Setup
+## Features
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+- **Visualizer Tab**: Watch the KMP algorithm execute step-by-step with:
+  - Interactive DFA graph visualization using Cytoscape.js
+  - Real-time pattern matching with character highlighting
+  - Step-by-step execution controls (play, pause, next, previous, reset)
 
-## Need an official Svelte framework?
+- **Benchmark Tab**: Performance testing to verify O(n+m) time complexity
+  - Compare execution times across different text sizes
+  - Test with 1MB, 10MB, and custom text sizes
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+- **Validator Tab**: Logic validation with truth tables
+  - Verify pattern matching results
+  - Display match positions and validation rules
 
-## Technical considerations
+## Tech Stack
 
-**Why use this over SvelteKit?**
+- **Framework**: [Svelte 5](https://svelte.dev/) (with runes)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **DFA Visualization**: [Cytoscape.js](https://js.cytoscape.org/)
+- **Icons**: [Lucide Svelte](https://lucide.dev/)
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
+## Prerequisites
 
-This template contains as little as possible to get started with Vite + TypeScript + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
+- [Node.js](https://nodejs.org/) version 18 or higher
+- npm (comes with Node.js) or [pnpm](https://pnpm.io/) or [yarn](https://yarnpkg.com/)
 
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
+## Installation
 
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
+### Windows
 
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
+1. **Clone the repository**:
+   ```powershell
+   git clone https://github.com/nicsvntos/KMP-DFA-Visualizer.git
+   cd pattern-visualizer
+   ```
 
-**Why include `.vscode/extensions.json`?**
+2. **Install dependencies**:
+   ```powershell
+   npm install
+   ```
 
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
+   Or if you prefer using pnpm:
+   ```powershell
+   pnpm install
+   ```
 
-**Why enable `allowJs` in the TS template?**
+### macOS
 
-While `allowJs: false` would indeed prevent the use of `.js` files in the project, it does not prevent the use of JavaScript syntax in `.svelte` files. In addition, it would force `checkJs: false`, bringing the worst of both worlds: not being able to guarantee the entire codebase is TypeScript, and also having worse typechecking for the existing JavaScript. In addition, there are valid use cases in which a mixed codebase may be relevant.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/nicsvntos/KMP-DFA-Visualizer.git
+   cd pattern-visualizer
+   ```
 
-**Why is HMR not preserving my local component state?**
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/rixo/svelte-hmr#svelte-hmr).
+   Or if you prefer using pnpm:
+   ```bash
+   pnpm install
+   ```
 
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
+   Or with yarn:
+   ```bash
+   yarn install
+   ```
 
-```ts
-// store.ts
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
+## Running the Project
+
+### Development Server
+
+Start the development server with hot module replacement:
+
+```bash
+npm run dev
 ```
+
+Then open your browser and navigate to:
+- Local: `http://localhost:5173`
+- Network: `http://192.168.x.x:5173` (available on your local network)
+
+### Build for Production
+
+Create an optimized production build:
+
+```bash
+npm run build
+```
+
+The built files will be in the `dist/` directory.
+
+### Preview Production Build
+
+Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+### Type Checking
+
+Run Svelte and TypeScript type checking:
+
+```bash
+npm run check
+```
+
+## How to Use
+
+1. **Enter a Pattern**: Type a search pattern in the input field (e.g., "ABABC")
+2. **Enter Text**: Type or paste the text to search within
+3. **Build DFA & Run**: Click the button to generate the DFA and start the KMP algorithm
+4. **Step Through**: Use the controls to step through each comparison
+5. **Watch the Graph**: See the DFA states transition as the algorithm runs
+6. **View Matches**: See highlighted matches in the text
