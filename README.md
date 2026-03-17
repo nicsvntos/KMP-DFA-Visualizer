@@ -1,6 +1,6 @@
 # KMP DFA Visualizer
 
-An interactive visualizer for the Knuth-Morris-Pratt (KMP) string matching algorithm with DFA (Deterministic Finite Automaton) graph visualization. Built with Svelte 5, TypeScript, and Tailwind CSS.
+An interactive visualizer for the Knuth-Morris-Pratt (KMP) string matching algorithm with DFA (Deterministic Finite Automaton) graph visualization.
 
 ## Features
 
@@ -38,7 +38,7 @@ An interactive visualizer for the Knuth-Morris-Pratt (KMP) string matching algor
 1. **Clone the repository**:
    ```powershell
    git clone https://github.com/nicsvntos/KMP-DFA-Visualizer.git
-   cd pattern-visualizer
+   cd KMP-DFA-Visualizer
    ```
 
 2. **Install dependencies**:
@@ -56,7 +56,7 @@ An interactive visualizer for the Knuth-Morris-Pratt (KMP) string matching algor
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/nicsvntos/KMP-DFA-Visualizer.git
-   cd pattern-visualizer
+   cd KMP-DFA-Visualizer
    ```
 
 2. **Install dependencies**:
