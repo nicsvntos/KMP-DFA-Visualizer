@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { MatchResult, KMPStep } from '../types'
 
-  // ─── Props ──────────────────────────────────────────────────────────────────
   interface Props {
     text: string
     pattern: string

@@ -182,16 +182,12 @@
 
       <!-- Validator — always mounted, hidden when inactive -->
       <div style="display: {activeTab === 'validator' ? 'block' : 'none'}">
-        <div class="max-w-2xl mx-auto">
-          <div class="rounded-xl border border-slate-700 bg-slate-900 p-6">
-            <LogicValidator text={currentText} pattern={currentPattern} />
-            {#if !currentText}
-              <p class="text-sm text-slate-600 mt-4 text-center">
-                Go to the Visualizer tab first and load some text to enable validation.
-              </p>
-            {/if}
-          </div>
-        </div>
+        <LogicValidator text={currentText} pattern={currentPattern} />
+        {#if !currentText}
+          <p class="text-sm text-slate-600 mt-4 text-center">
+            Go to the Visualizer tab first and load some text to enable validation.
+          </p>
+        {/if}
       </div>
 
     </div>
