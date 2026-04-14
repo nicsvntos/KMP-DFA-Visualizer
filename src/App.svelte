@@ -53,25 +53,25 @@
   }
 </script>
 
-<div class="min-h-screen bg-slate-800 text-white">
+<div class="min-h-screen bg-[#191826] text-[#8fa8c8]">
 
   <!-- Top nav -->
-  <header class="border-b border-slate-700 bg-slate-900">
+  <header class="border-b border-[#2a2a3d] bg-[#1a1929]">
     <div class="max-w-screen-xl mx-auto px-4 py-3 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-md bg-indigo-600 flex items-center justify-center shrink-0">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+        <div class="w-8 h-8 rounded-md bg-[#1e1f2f] flex items-center justify-center shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#8fa8c8]" viewBox="0 0 24 24" fill="currentColor">
             <path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/>
           </svg>
         </div>
         <div>
-          <h1 class="text-sm font-bold text-white leading-none">Pattern Matcher</h1>
-          <p class="text-xs text-slate-400 leading-none mt-0.5">KMP + DFA Visualizer</p>
+          <h1 class="text-sm font-bold text-[#8fa8c8] leading-none">Pattern Matcher</h1>
+          <p class="text-xs text-[#50688c] leading-none mt-0.5">KMP + DFA Visualizer</p>
         </div>
       </div>
 
       <!-- Tabs -->
-      <div class="flex gap-1 bg-slate-800 border border-slate-700 rounded-lg p-1">
+      <div class="flex gap-1 bg-[#1e1f2f] border border-[#2a2a3d] rounded-lg p-1">
         {#each ([
           { id: 'visualizer', label: 'Visualizer' },
           { id: 'benchmark', label: 'Benchmark' },
@@ -81,8 +81,8 @@
             onclick={() => switchTab(tab.id)}
             class="px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-200
                    {activeTab === tab.id
-                     ? 'bg-indigo-600 text-white shadow'
-                     : 'text-slate-400 hover:text-white hover:bg-slate-700'}"
+                     ? 'bg-[#1e1f2f] text-[#8fa8c8] shadow border border-[#3a3b5c]'
+                     : 'text-[#50688c] hover:text-[#8fa8c8] hover:bg-[#252638]'}"
           >
             {tab.label}
           </button>
@@ -107,11 +107,11 @@
       <div style="display: {activeTab === 'visualizer' ? 'block' : 'none'}">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
           <div class="lg:col-span-3 flex flex-col gap-6">
-            <div class="rounded-xl border border-slate-700 bg-slate-900 p-4">
+            <div class="rounded-xl border border-[#2a2a3d] bg-[#1a1929] p-4">
               <PatternInput onReady={handleReady} />
             </div>
             {#if isReady}
-              <div class="rounded-xl border border-slate-700 bg-slate-900 p-4">
+              <div class="rounded-xl border border-[#2a2a3d] bg-[#1a1929] p-4">
                 <StepController disabled={!isReady} />
               </div>
             {/if}
@@ -119,41 +119,40 @@
 
           <div class="lg:col-span-9 flex flex-col gap-6">
             {#if !isReady}
-              <div class="rounded-xl border border-slate-700 bg-slate-900 p-10
+              <div class="rounded-xl border border-[#2a2a3d] bg-[#1a1929] p-10
                           flex flex-col items-center justify-center gap-4 text-center">
-                <div class="w-16 h-16 rounded-full bg-indigo-900 flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div class="w-16 h-16 rounded-full bg-[#191826] flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-[#50688c]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                       d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />
                   </svg>
                 </div>
                 <div>
-                  <h2 class="text-xl font-semibold text-white">Welcome to Pattern Matcher</h2>
-                  <p class="text-slate-400 text-sm mt-2 max-w-md">
+                  <h2 class="text-xl font-semibold text-[#8fa8c8]">Welcome to Pattern Matcher</h2>
+                  <p class="text-[#50688c] text-sm mt-2 max-w-md">
                     Enter a search pattern and text on the left, then click
-                    <span class="text-indigo-400 font-medium">Build DFA & Run KMP</span>
+                    <span class="text-[#50688c] font-medium">Build DFA & Run KMP</span>
                     to see the algorithm animate step by step.
                   </p>
                 </div>
                 <div class="grid grid-cols-3 gap-3 mt-2 w-full max-w-lg">
                   {#each [
-                    { icon: '⬡', title: 'DFA Graph', desc: 'Circle-and-arrows automaton built from your pattern' },
-                    { icon: '⚡', title: 'KMP Steps', desc: 'Watch each character comparison in real time' },
-                    { icon: '📊', title: 'Big-O Proof', desc: 'Benchmark on 1MB vs 10MB to confirm O(n+m)' },
+                    { title: 'DFA Graph', desc: 'Circle-and-arrows automaton built from your pattern' },
+                    { title: 'KMP Steps', desc: 'Watch each character comparison in real time' },
+                    { title: 'Big-O Proof', desc: 'Benchmark on 1MB vs 10MB to confirm O(n+m)' },
                   ] as feature}
-                    <div class="rounded-lg border border-slate-700 bg-slate-800 p-3 text-left">
-                      <div class="text-xl mb-1">{feature.icon}</div>
-                      <p class="text-xs font-semibold text-white">{feature.title}</p>
-                      <p class="text-xs text-slate-500 mt-0.5">{feature.desc}</p>
+                    <div class="rounded-lg border border-[#2a2a3d] bg-[#191826] p-3 text-left">
+                      <p class="text-xs font-semibold text-[#8fa8c8]">{feature.title}</p>
+                      <p class="text-xs text-[#3d5070] mt-0.5">{feature.desc}</p>
                     </div>
                   {/each}
                 </div>
               </div>
             {:else}
-              <div class="rounded-xl border border-slate-700 bg-slate-900 p-4" style="min-height: 380px;">
+              <div class="rounded-xl border border-[#2a2a3d] bg-[#1a1929] p-4" style="min-height: 380px;">
                 <DFAGraph {dfa} {activeState} />
               </div>
-              <div class="rounded-xl border border-slate-700 bg-slate-900 p-4">
+              <div class="rounded-xl border border-[#2a2a3d] bg-[#1a1929] p-4">
                 <MatchHighlighter
                   text={currentText}
                   pattern={currentPattern}
@@ -169,10 +168,10 @@
       <!-- Benchmark — always mounted, hidden when inactive -->
       <div style="display: {activeTab === 'benchmark' ? 'block' : 'none'}">
         <div class="max-w-2xl mx-auto">
-          <div class="rounded-xl border border-slate-700 bg-slate-900 p-6">
+          <div class="rounded-xl border border-[#2a2a3d] bg-[#1a1929] p-6">
             <BenchmarkPanel pattern={currentPattern} text={currentText} />
             {#if !currentPattern}
-              <p class="text-sm text-slate-600 mt-4 text-center">
+              <p class="text-sm text-[#2e3d54] mt-4 text-center">
                 Go to the Visualizer tab first and enter a pattern to enable benchmarking.
               </p>
             {/if}
@@ -184,7 +183,7 @@
       <div style="display: {activeTab === 'validator' ? 'block' : 'none'}">
         <LogicValidator text={currentText} pattern={currentPattern} />
         {#if !currentText}
-          <p class="text-sm text-slate-600 mt-4 text-center">
+          <p class="text-sm text-[#2e3d54] mt-4 text-center">
             Go to the Visualizer tab first and load some text to enable validation.
           </p>
         {/if}
@@ -194,8 +193,8 @@
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-700 mt-10">
-    <div class="max-w-screen-xl mx-auto px-4 py-3 flex items-center justify-between text-xs text-slate-600">
+  <footer class="border-t border-[#2a2a3d] mt-10">
+    <div class="max-w-screen-xl mx-auto px-4 py-3 flex items-center justify-between text-xs text-[#2e3d54]">
       <span>KMP + DFA Pattern Matcher · CS Project</span>
       <span>Svelte 5 · Tailwind v4 · Cytoscape.js</span>
     </div>

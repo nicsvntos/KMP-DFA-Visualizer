@@ -4,6 +4,8 @@
 :root {
     font-family: 'Geist', sans-serif;
     font-size: 15px;
+    background-color: #191826;
+    color: #50688c;
 }
 
 code, kbd, pre, .font-mono {

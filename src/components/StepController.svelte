@@ -55,7 +55,7 @@
 
 <div class="flex flex-col gap-4">
   <div>
-    <h2 class="text-lg font-semibold text-white">Playback Controls</h2>
+    <h2 class="text-lg font-semibold text-[#8fa8c8]">Playback Controls</h2>
     <p class="text-sm text-zinc-400 mt-1">
       Step through the algorithm manually or let it play automatically.
     </p>
@@ -65,11 +65,11 @@
   <div class="flex items-center justify-between text-sm">
     <span class="text-zinc-400">
       Step
-      <span class="text-white font-mono font-bold">
+      <span class="text-[#8fa8c8] font-mono font-bold">
         {currentIndex < 0 ? 0 : currentIndex + 1}
       </span>
       of
-      <span class="text-white font-mono font-bold">{totalSteps}</span>
+      <span class="text-[#8fa8c8] font-mono font-bold">{totalSteps}</span>
     </span>
 
     {#if isDone}
@@ -77,7 +77,7 @@
     {:else if isIdle}
       <span class="text-zinc-500 text-xs">Ready</span>
     {:else if isPlaying}
-      <span class="text-indigo-400 text-xs font-medium animate-pulse">● Playing</span>
+      <span class="text-[#50688c] text-xs font-medium animate-pulse">● Playing</span>
     {:else}
       <span class="text-amber-400 text-xs font-medium">⏸ Paused</span>
     {/if}
@@ -100,7 +100,7 @@
       title="Step back"
       class="flex items-center justify-center w-10 h-10 rounded-md
              border border-zinc-700 bg-zinc-800 text-zinc-300
-             hover:bg-zinc-700 hover:text-white
+             hover:bg-zinc-700 hover:text-[#8fa8c8]
              disabled:opacity-30 disabled:cursor-not-allowed
              transition-colors"
     >
@@ -117,8 +117,8 @@
       class="flex items-center justify-center flex-1 h-10 rounded-md
              font-medium text-sm
              {isPlaying
-               ? 'bg-amber-600 hover:bg-amber-500 text-white border border-amber-500'
-               : 'bg-indigo-600 hover:bg-indigo-500 text-white border border-indigo-500'}
+               ? 'bg-amber-600 hover:bg-amber-500 text-[#8fa8c8] border border-amber-500'
+               : 'bg-[#1e1f2f] hover:bg-[#252638] text-[#8fa8c8] border border-[#3a3b5c]'}
              disabled:opacity-30 disabled:cursor-not-allowed
              transition-colors"
     >
@@ -142,7 +142,7 @@
       title="Step forward"
       class="flex items-center justify-center w-10 h-10 rounded-md
              border border-zinc-700 bg-zinc-800 text-zinc-300
-             hover:bg-zinc-700 hover:text-white
+             hover:bg-zinc-700 hover:text-[#8fa8c8]
              disabled:opacity-30 disabled:cursor-not-allowed
              transition-colors"
     >
@@ -158,7 +158,7 @@
       title="Reset"
       class="flex items-center justify-center w-10 h-10 rounded-md
              border border-zinc-700 bg-zinc-800 text-zinc-300
-             hover:bg-red-900 hover:text-red-300 hover:border-red-700
+             hover:bg-red-950 hover:text-red-400 hover:border-red-800
              disabled:opacity-30 disabled:cursor-not-allowed
              transition-colors"
     >
@@ -177,8 +177,8 @@
           onclick={() => handleSpeedChange(opt.ms)}
           class="flex-1 text-xs py-1.5 rounded-md border transition-colors
                  {selectedSpeed === opt.ms
-                   ? 'bg-indigo-600 border-indigo-500 text-white font-medium'
-                   : 'bg-zinc-800 border-zinc-700 text-zinc-400 hover:bg-zinc-700 hover:text-white'}"
+                   ? 'bg-[#1e1f2f] border-[#3a3b5c] text-[#8fa8c8] font-medium'
+                   : 'bg-zinc-800 border-zinc-700 text-zinc-400 hover:bg-zinc-700 hover:text-[#8fa8c8]'}"
         >
           {opt.label}
         </button>

@@ -76,7 +76,7 @@
   <!-- Header -->
   <div class="flex items-center justify-between flex-wrap gap-2">
     <div>
-      <h2 class="text-lg font-semibold text-white">Match Highlighter</h2>
+      <h2 class="text-lg font-semibold text-[#8fa8c8]">Match Highlighter</h2>
       <p class="text-sm text-zinc-400">
         Watch the algorithm scan through your text in real time.
       </p>
@@ -86,15 +86,15 @@
     <div class="flex gap-3 text-sm shrink-0">
       <span class="flex items-center gap-1">
         <span class="inline-block w-3 h-2 rounded-sm bg-indigo-500 opacity-80"></span>
-        <span class="text-slate-400">Scanning</span>
+        <span class="text-[#50688c]">Scanning</span>
       </span>
       <span class="flex items-center gap-1">
         <span class="inline-block w-3 h-2 rounded-sm bg-amber-400"></span>
-        <span class="text-slate-400">Current char</span>
+        <span class="text-[#50688c]">Current char</span>
       </span>
       <span class="flex items-center gap-1">
         <span class="inline-block w-3 h-2 rounded-sm bg-green-500"></span>
-        <span class="text-slate-400">Match</span>
+        <span class="text-[#50688c]">Match</span>
       </span>
     </div>
   </div>
@@ -102,13 +102,13 @@
   <!-- Match count + progress -->
   {#if text.length > 0}
     <div class="flex items-center gap-3">
-      <div class="flex-1 h-1.5 rounded-full bg-slate-800 overflow-hidden">
+      <div class="flex-1 h-1.5 rounded-full bg-[#1e1f2f] overflow-hidden">
         <div
           class="h-full rounded-full bg-indigo-500 transition-all duration-150"
           style="width: {progress}%"
         ></div>
       </div>
-      <span class="text-sm text-slate-400 shrink-0">
+      <span class="text-sm text-[#50688c] shrink-0">
         {progress}% scanned
       </span>
       {#if matchCount > 0}
@@ -121,11 +121,11 @@
 
   <!-- Text display -->
   <div
-    class="flex-1 rounded-lg border border-slate-700 bg-slate-950 p-4 overflow-auto"
+    class="flex-1 rounded-lg border border-[#2a2a3d]bg-[#191826] p-4 overflow-auto"
     style="min-height: 200px;"
   >
     {#if !text}
-      <p class="text-slate-600 text-base">No text loaded yet.</p>
+      <p class="text-[#2e3d54] text-base">No text loaded yet.</p>
     {:else}
       <p class="font-mono text-base leading-7 break-all whitespace-pre-wrap select-text">
         {#each spans() as span (span.index)}
@@ -141,11 +141,11 @@
             >{span.char}</span>
           {:else if span.kind === 'scanning'}
             <span
-              class="bg-indigo-900 text-indigo-200 rounded-sm px-px"
+              class="bg-[#191826] text-[#50688c] rounded-sm px-px"
               title="In scan window"
             >{span.char}</span>
           {:else}
-            <span class="text-slate-300">{span.char}</span>
+            <span class="text-[#6a82a0]">{span.char}</span>
           {/if}
         {/each}
       </p>
@@ -154,20 +154,20 @@
 
   <!-- Current step info -->
   {#if currentStep}
-    <div class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-sm font-mono">
-      <div class="flex flex-wrap gap-x-4 gap-y-1 text-slate-400">
+    <div class="rounded-md border border-[#2a2a3d]bg-[#1a1929] px-3 py-2 text-sm font-mono">
+      <div class="flex flex-wrap gap-x-4 gap-y-1 text-[#50688c]">
         <span>
-          text[<span class="text-white">{currentStep.textIndex}</span>]
+          text[<span class="text-[#8fa8c8]">{currentStep.textIndex}</span>]
           = <span class="text-amber-400 font-bold">'{text[currentStep.textIndex]}'</span>
         </span>
         <span>
-          pattern[<span class="text-white">{currentStep.patternIndex > 0 ? currentStep.patternIndex - 1 : 0}</span>]
-          = <span class="text-indigo-400 font-bold">
+          pattern[<span class="text-[#8fa8c8]">{currentStep.patternIndex > 0 ? currentStep.patternIndex - 1 : 0}</span>]
+          = <span class="text-[#50688c] font-bold">
             '{pattern[currentStep.patternIndex > 0 ? currentStep.patternIndex - 1 : 0] ?? '—'}'
           </span>
         </span>
         <span>
-          state = <span class="text-indigo-400 font-bold">q{currentStep.currentState}</span>
+          state = <span class="text-[#50688c] font-bold">q{currentStep.currentState}</span>
         </span>
         {#if currentStep.isMatch}
           <span class="text-green-400 font-bold">
@@ -180,11 +180,11 @@
 
   <!-- Match list -->
   {#if matches.length > 0}
-    <div class="rounded-md border border-slate-700 bg-slate-900 p-3">
-      <p class="text-sm font-medium text-slate-400 mb-2">All matches found so far</p>
+    <div class="rounded-md border border-[#2a2a3d]bg-[#1a1929] p-3">
+      <p class="text-sm font-medium text-[#50688c] mb-2">All matches found so far</p>
       <div class="flex flex-wrap gap-2">
         {#each matches as m}
-          <span class="text-sm font-mono px-2 py-0.5 rounded bg-green-900 text-green-300 border border-green-700">
+          <span class="text-sm font-mono px-2 py-0.5 rounded text-green-950text-green-400 border border-green-800">
             index {m.index}
           </span>
         {/each}

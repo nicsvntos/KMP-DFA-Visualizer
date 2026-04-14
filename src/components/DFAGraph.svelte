@@ -198,14 +198,14 @@
   <!-- Header -->
   <div class="flex items-center justify-between">
     <div>
-      <h2 class="text-lg font-semibold text-white">DFA Visualization</h2>
-      <p class="text-base text-slate-300">
+      <h2 class="text-lg font-semibold text-[#8fa8c8]">DFA Visualization</h2>
+      <p class="text-base text-[#6a82a0]">
         Each circle is a state. The highlighted state shows where the machine is
         right now.
       </p>
     </div>
     {#if dfa}
-      <div class="flex gap-3 text-sm text-slate-400 shrink-0">
+      <div class="flex gap-3 text-sm text-[#50688c] shrink-0">
         <span class="flex items-center gap-1">
           <span class="inline-block w-3 h-3 rounded-full border-2 border-amber-500"></span>
           Start
@@ -215,7 +215,7 @@
           Accept
         </span>
         <span class="flex items-center gap-1">
-          <span class="inline-block w-3 h-3 rounded-full bg-indigo-600"></span>
+          <span class="inline-block w-3 h-3 rounded-full bg-[#1e1f2f]"></span>
           Active
         </span>
       </div>
@@ -242,14 +242,14 @@
 
   <!-- State info -->
   {#if dfa}
-    <div class="rounded-md border border-slate-700 bg-slate-900 px-3 py-2">
-      <p class="text-sm text-slate-400">
-        <span class="text-white font-medium">{dfa.states.length} states</span>
+    <div class="rounded-md border border-[#2a2a3d]bg-[#1a1929] px-3 py-2">
+      <p class="text-sm text-[#50688c]">
+        <span class="text-[#8fa8c8] font-medium">{dfa.states.length} states</span>
         &nbsp;·&nbsp;
-        <span class="text-white font-medium">{dfa.alphabet.join(', ')}</span> alphabet
+        <span class="text-[#8fa8c8] font-medium">{dfa.alphabet.join(', ')}</span> alphabet
         &nbsp;·&nbsp;
         Currently in state
-        <span class="text-indigo-400 font-mono font-bold">q{activeState}</span>
+        <span class="text-[#50688c] font-mono font-bold">q{activeState}</span>
         {#if dfa.acceptStates.includes(activeState)}
           <span class="text-green-400 ml-1">✓ match!</span>
         {/if}

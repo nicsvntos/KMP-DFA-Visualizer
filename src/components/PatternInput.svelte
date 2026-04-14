@@ -60,7 +60,7 @@
 <div class="flex flex-col gap-6">
   <!-- Header -->
   <div>
-    <h2 class="text-lg font-semibold text-white">Pattern & Text Input</h2>
+    <h2 class="text-lg font-semibold text-[#8fa8c8]">Pattern & Text Input</h2>
     <p class="text-sm text-zinc-400 mt-1">
       Enter a pattern and text to search. The visualizer will animate the KMP
       algorithm step by step.
@@ -78,8 +78,8 @@
       bind:value={pattern}
       placeholder="e.g. abc"
       class="w-full rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2
-             text-white placeholder-zinc-500 text-sm
-             focus:outline-none focus:ring-2 focus:ring-indigo-500
+             text-[#8fa8c8] placeholder-zinc-500 text-sm
+             focus:outline-none focus:ring-2 focus:ring-[#3a3b5c]
              font-mono"
     />
     <!-- Sample patterns -->
@@ -89,7 +89,7 @@
         <button
           onclick={() => loadSamplePattern(sp)}
           class="text-xs px-2 py-0.5 rounded bg-zinc-800 text-zinc-300
-                 hover:bg-indigo-700 hover:text-white transition-colors font-mono"
+                 hover:bg-[#1e1f2f] hover:text-[#8fa8c8] transition-colors font-mono"
         >
           {sp}
         </button>
@@ -115,7 +115,7 @@
             <tr>
               <td class="pr-3 text-zinc-500">char</td>
               {#each failureTable as cell}
-                <td class="w-8 text-center text-white font-bold">{cell.char}</td>
+                <td class="w-8 text-center text-[#8fa8c8] font-bold">{cell.char}</td>
               {/each}
             </tr>
           </thead>
@@ -126,7 +126,7 @@
                 <td
                   class="w-8 text-center rounded
                          {cell.value > 0
-                           ? 'text-indigo-400 font-bold'
+                           ? 'text-[#50688c] font-bold'
                            : 'text-zinc-400'}"
                 >
                   {cell.value}
@@ -158,8 +158,8 @@
       placeholder="Paste or type your text here..."
       rows={5}
       class="w-full rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2
-             text-white placeholder-zinc-500 text-sm resize-y
-             focus:outline-none focus:ring-2 focus:ring-indigo-500
+             text-[#8fa8c8] placeholder-zinc-500 text-sm resize-y
+             focus:outline-none focus:ring-2 focus:ring-[#3a3b5c]
              font-mono"
     ></textarea>
 
@@ -171,7 +171,7 @@
           <button
             onclick={() => loadSample(st)}
             class="text-xs px-2 py-0.5 rounded bg-zinc-800 text-zinc-300
-                   hover:bg-indigo-700 hover:text-white transition-colors"
+                   hover:bg-[#1e1f2f] hover:text-[#8fa8c8] transition-colors"
           >
             Sample {i + 1}
           </button>
@@ -190,9 +190,8 @@
   <!-- Submit -->
   <button
     onclick={handleSubmit}
-    class="w-full rounded-md bg-indigo-600 hover:bg-indigo-500
-           text-white text-sm font-medium py-2.5 px-4
-           transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-400"
+    class="w-full rounded-md bg-[#1e1f2f] hover:bg-[#252638] border border-[#3a3b5c] text-[#8fa8c8] text-sm font-medium py-2.5 px-4
+           transition-colors focus:outline-none focus:ring-2 focus:ring-[#3a3b5c]"
   >
     Build DFA & Run KMP
   </button>
