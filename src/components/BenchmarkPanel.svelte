@@ -45,7 +45,7 @@
   </div>
 
   <!-- Context banner -->
-  <div class="rounded-lg border border-[#2a2a3d]bg-[#191826] px-4 py-2 flex items-center gap-3">
+  <div class="rounded-lg rounded-lg bg-[#1e1f2f] px-4 py-2 flex items-center gap-3">
     <p class="text-sm font-medium text-[#50688c] shrink-0">From Visualizer</p>
     <span class="text-[#2e3d54]">·</span>
     <p class="text-sm font-mono">
@@ -74,7 +74,7 @@
            focus:outline-none focus:ring-2 focus:ring-[#3a3b5c]
            {isRunning || pattern.length === 0
              ? 'bg-[#191826] text-[#3d5070] cursor-not-allowed border border-slate-700'
-             : 'bg-[#1e1f2f] hover:bg-[#252638] text-[#8fa8c8]'}"
+             : 'bg-[#1e1f2f] hover:bg-[#50688c] hover:text-[#191826] text-[#8fa8c8]'}"
   >
     {#if isRunning}
       <span class="flex items-center justify-center gap-2">
@@ -138,7 +138,7 @@
 
     <!-- Big-O analysis -->
     {#if analysis}
-      <div class="rounded-lg border border-[#2a2a3d] bg-[#191826] p-4 flex flex-col gap-3">
+      <div class="rounded-lg bg-[#1e1f2f] p-4 flex flex-col gap-3">
         <div class="flex items-center gap-2">
           <span class="text-[#50688c] font-mono font-bold text-base">{analysis.complexity}</span>
           <span class="text-base text-[#50688c]">Analysis</span>
@@ -165,7 +165,7 @@
     {/if}
 
     <!-- Big-O reference table -->
-    <div class="rounded-lg border border-[#2a2a3d]bg-[#1a1929] p-4">
+    <div class="rounded-lg bg-[#1e1f2f] p-4">
       <p class="text-base font-semibold text-[#8fa8c8] mb-3">Big-O Complexity Reference</p>
       <table class="w-full text-sm">
         <thead>

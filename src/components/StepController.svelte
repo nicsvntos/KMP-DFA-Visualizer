@@ -118,7 +118,7 @@
              font-medium text-sm
              {isPlaying
                ? 'bg-amber-600 hover:bg-amber-500 text-[#8fa8c8] border border-amber-500'
-               : 'bg-[#1e1f2f] hover:bg-[#252638] text-[#8fa8c8] border border-[#3a3b5c]'}
+               : 'bg-[#1e1f2f] hover:bg-[#50688c] hover:text-[#191826] text-[#8fa8c8]'}
              disabled:opacity-30 disabled:cursor-not-allowed
              transition-colors"
     >
@@ -177,7 +177,7 @@
           onclick={() => handleSpeedChange(opt.ms)}
           class="flex-1 text-xs py-1.5 rounded-md border transition-colors
                  {selectedSpeed === opt.ms
-                   ? 'bg-[#1e1f2f] border-[#3a3b5c] text-[#8fa8c8] font-medium'
+                   ? 'bg-[#1e1f2f] text-[#8fa8c8] font-medium'
                    : 'bg-zinc-800 border-zinc-700 text-zinc-400 hover:bg-zinc-700 hover:text-[#8fa8c8]'}"
         >
           {opt.label}

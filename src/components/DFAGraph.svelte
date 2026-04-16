@@ -224,7 +224,7 @@
 
   <!-- Graph container -->
   <div
-    class="relative flex-1 rounded-lg border border-zinc-700 bg-zinc-950 overflow-hidden"
+    class="relative flex-1 rounded-lg bg-[#1e1f2f] overflow-hidden"
     style="min-height: 300px;"
   >
     {#if !dfa}

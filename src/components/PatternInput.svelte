@@ -89,7 +89,7 @@
         <button
           onclick={() => loadSamplePattern(sp)}
           class="text-xs px-2 py-0.5 rounded bg-zinc-800 text-zinc-300
-                 hover:bg-[#1e1f2f] hover:text-[#8fa8c8] transition-colors font-mono"
+                 hover:bg-[#50688c] hover:text-[#191826] hover:text-[#8fa8c8] transition-colors font-mono"
         >
           {sp}
         </button>
@@ -171,7 +171,7 @@
           <button
             onclick={() => loadSample(st)}
             class="text-xs px-2 py-0.5 rounded bg-zinc-800 text-zinc-300
-                   hover:bg-[#1e1f2f] hover:text-[#8fa8c8] transition-colors"
+                   hover:bg-[#50688c] hover:text-[#191826] hover:text-[#8fa8c8] transition-colors"
           >
             Sample {i + 1}
           </button>
@@ -190,7 +190,7 @@
   <!-- Submit -->
   <button
     onclick={handleSubmit}
-    class="w-full rounded-md bg-[#1e1f2f] hover:bg-[#252638] border border-[#3a3b5c] text-[#8fa8c8] text-sm font-medium py-2.5 px-4
+    class="w-full rounded-md bg-[#1e1f2f] hover:bg-[#50688c] hover:text-[#191826] text-[#8fa8c8] text-sm font-medium py-2.5 px-4
            transition-colors focus:outline-none focus:ring-2 focus:ring-[#3a3b5c]"
   >
     Build DFA & Run KMP

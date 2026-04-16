@@ -78,7 +78,7 @@
   </div>
 
   <!-- Context banner -->
-  <div class="rounded-lg border border-[#2a2a3d]bg-[#1e1f2f] px-4 py-2 flex items-center gap-3">
+  <div class="rounded-lg bg-[#1e1f2f] px-4 py-2 flex items-center gap-3">
     <p class="text-sm font-medium text-[#50688c] shrink-0">From Visualizer</p>
     <span class="text-[#2e3d54]">·</span>
     <p class="text-sm font-mono">
@@ -104,7 +104,7 @@
 
     <!-- LEFT: Rule builder -->
     <div class="lg:col-span-5">
-      <div class="rounded-xl border border-[#2a2a3d]bg-[#1a1929] p-5 flex flex-col gap-4">
+      <div class="rounded-xl bg-[#1e1f2f] p-5 flex flex-col gap-4">
         <p class="text-base font-semibold text-[#8fa8c8]">Build a Rule</p>
 
         <!-- Operator selector -->
@@ -114,8 +114,8 @@
               onclick={() => (operator = op)}
               class="flex-1 py-2 text-sm font-medium rounded-md border transition-colors
                      {operator === op
-                       ? 'bg-[#1e1f2f] border-[#3a3b5c] text-[#8fa8c8]'
-                       : 'bg-[#1e1f2f] border-[#2a2a3d]text-[#50688c] hover:text-[#8fa8c8] hover:bg-[#252638]'}"
+                       ? 'bg-[#50688c] text-[#191826]'
+                       : 'bg-[#1e1f2f] text-[#50688c] hover:text-[#8fa8c8] hover:bg-[#50688c] hover:text-[#191826]'}"
             >
               {op === 'SINGLE' ? 'Single' : op}
             </button>
@@ -130,8 +130,8 @@
               onclick={() => (negateA = !negateA)}
               class="shrink-0 px-3 py-2 text-sm rounded-md border transition-colors font-mono
                      {negateA
-                       ? 'bg-amber-700 border-amber-500 text-[#8fa8c8]'
-                       : 'bg-[#1e1f2f] border-[#2a2a3d]text-[#50688c] hover:text-[#8fa8c8]'}"
+                       ? 'bg-[#50688c] text-[#191826]'
+                       : 'bg-[#1e1f2f] text-[#50688c] hover:text-[#8fa8c8]'}"
             >
               NOT
             </button>
@@ -139,7 +139,7 @@
               type="text"
               bind:value={patternA}
               placeholder="e.g. AABA"
-              class="flex-1 min-w-0 rounded-md border border-[#2a2a3d]bg-[#1e1f2f] px-3 py-2
+              class="flex-1 min-w-0 rounded-md bg-[#1e1f2f] border border-[#2a2a3d] px-3 py-2
                      text-[#8fa8c8] placeholder-slate-500 text-sm font-mono
                      focus:outline-none focus:ring-2 focus:ring-[#3a3b5c]"
             />
@@ -151,7 +151,7 @@
           <div class="flex flex-col gap-2">
             <div class="flex items-center gap-2">
               <span class="text-sm text-[#50688c] font-medium">Pattern B</span>
-              <span class="px-2 py-0.5 text-xs rounded bg-[#191826] border border-[#2a2a3d] text-[#50688c] font-mono">
+              <span class="px-2 py-0.5 text-xs rounded bg-[#191826] text-[#50688c] font-mono">
                 {operator}
               </span>
             </div>
@@ -160,8 +160,8 @@
                 onclick={() => (negateB = !negateB)}
                 class="shrink-0 px-3 py-2 text-sm rounded-md border transition-colors font-mono
                        {negateB
-                         ? 'bg-amber-700 border-amber-500 text-[#8fa8c8]'
-                         : 'bg-[#1e1f2f] border-[#2a2a3d]text-[#50688c] hover:text-[#8fa8c8]'}"
+                         ? 'bg-[#50688c] text-[#8fa8c8]'
+                         : 'bg-[#1e1f2f] text-[#50688c] hover:text-[#8fa8c8]'}"
               >
                 NOT
               </button>
@@ -169,7 +169,7 @@
                 type="text"
                 bind:value={patternB}
                 placeholder="e.g. AAC"
-                class="flex-1 min-w-0 rounded-md border border-[#2a2a3d]bg-[#1e1f2f] px-3 py-2
+                class="flex-1 min-w-0 rounded-md bg-[#1e1f2f] border border-[#2a2a3d] px-3 py-2
                        text-[#8fa8c8] placeholder-slate-500 text-sm font-mono
                        focus:outline-none focus:ring-2 focus:ring-[#3a3b5c]"
               />
@@ -179,7 +179,7 @@
 
         <!-- Preview -->
         {#if patternA.trim()}
-          <div class="rounded-md bg-[#1e1f2f] border border-[#2a2a3d]px-3 py-2">
+          <div class="rounded-md bg-[#1e1f2f] px-3 py-2">
             <p class="text-sm text-[#50688c]">Preview:</p>
             <p class="text-sm font-mono text-[#50688c] font-semibold mt-0.5 break-all">
               {#if operator === 'SINGLE'}
@@ -203,7 +203,7 @@
 
         <button
           onclick={handleAddRule}
-          class="w-full rounded-md bg-[#1e1f2f] hover:bg-[#252638] text-[#8fa8c8]
+          class="w-full rounded-md bg-[#1e1f2f] hover:bg-[#50688c] hover:text-[#191826] text-[#8fa8c8]
                  text-sm font-medium py-2.5 transition-colors"
         >
           Add Rule
@@ -215,7 +215,7 @@
     <div class="lg:col-span-7 flex flex-col gap-4">
 
       {#if !hasRules}
-        <div class="rounded-xl border border-[#2a2a3d]bg-[#1a1929] p-10
+        <div class="rounded-xl bg-[#1e1f2f] p-10
                     flex flex-col items-center justify-center gap-2 text-center">
           <p class="text-base text-[#50688c]">No rules added yet.</p>
           <p class="text-sm text-[#2e3d54]">Add a rule on the left to get started.</p>
@@ -224,7 +224,7 @@
       {:else}
 
         <!-- Rules list -->
-        <div class="rounded-xl border border-[#2a2a3d]bg-[#1a1929] p-4 flex flex-col gap-3">
+        <div class="rounded-xl bg-[#1e1f2f] p-4 flex flex-col gap-3">
           <div class="flex items-center justify-between">
             <p class="text-base font-semibold text-[#8fa8c8]">
               Rules <span class="text-[#3d5070] font-normal">({rules.length})</span>
@@ -256,14 +256,14 @@
                   onclick={() => setActiveTableIndex(i)}
                   class="text-sm px-2 py-0.5 rounded border transition-colors
                          {activeTableIndex === i
-                           ? 'bg-[#1e1f2f] border-[#3a3b5c] text-[#8fa8c8]'
-                           : 'bg-slate-700 border-[#2a2a3d] text-[#6a82a0] hover:text-[#8fa8c8]'}"
+                           ? 'bg-[#1e1f2f] text-[#8fa8c8]'
+                           : 'bg-slate-700 text-[#6a82a0] hover:text-[#8fa8c8]'}"
                 >
                   Table
                 </button>
                 <button
                   onclick={() => removeRule(i)}
-                  class="text-sm px-2 py-0.5 rounded border border-[#2a2a3d]
+                  class="text-sm px-2 py-0.5 rounded
                          bg-slate-700 text-[#6a82a0] hover:text-red-400 hover:border-red-800 transition-colors"
                 >
                   ✕
@@ -299,7 +299,7 @@
         <!-- Truth table -->
         {#if tables[activeTableIndex]}
           {@const table = tables[activeTableIndex]}
-          <div class="rounded-xl border border-[#2a2a3d]bg-[#1a1929] p-4 flex flex-col gap-3">
+          <div class="rounded-xl bg-[#1e1f2f] p-4 flex flex-col gap-3">
             <div class="flex items-start justify-between gap-2 flex-wrap">
               <div>
                 <p class="text-base font-semibold text-[#8fa8c8]">{table.rule.label} — Truth Table</p>
@@ -313,7 +313,7 @@
                   <span class="text-sm px-2 py-0.5 rounded bg-red-950 border border-red-800 text-red-400">Contradiction</span>
                 {/if}
                 {#if table.isSatisfied && !table.isTautology}
-                  <span class="text-sm px-2 py-0.5 rounded bg-[#191826] border border-[#2a2a3d] text-[#50688c]">Satisfiable</span>
+                  <span class="text-sm px-2 py-0.5 rounded bg-[#191826] text-[#50688c]">Satisfiable</span>
                 {/if}
               </div>
             </div>
@@ -377,18 +377,18 @@
         disabled={!hasText}
         class="w-full rounded-md py-3 text-base font-medium transition-colors
                {hasText
-                 ? 'bg-[#1e1f2f] hover:bg-[#252638] text-[#8fa8c8]'
-                 : 'bg-[#1e1f2f] text-[#3d5070] border border-[#2a2a3d]cursor-not-allowed'}"
+                 ? 'bg-[#1e1f2f] hover:bg-[#50688c] hover:text-[#191826] text-[#8fa8c8]'
+                 : 'bg-[#1e1f2f] text-[#3d5070] cursor-not-allowed'}"
       >
         {hasText ? 'Validate Against Text' : 'Load text in Visualizer tab first'}
       </button>
 
       {#if validationResults.length > 0}
-        <div class="rounded-xl border border-[#2a2a3d]bg-[#1a1929] p-4 flex flex-col gap-3">
+        <div class="rounded-xl bg-[#1e1f2f] p-4 flex flex-col gap-3">
           <p class="text-base font-bold text-[#8fa8c8]">Validation Results</p>
 
           {#each validationResults as vr}
-            <div class="rounded-lg border border-[#2a2a3d]bg-[#1e1f2f] px-4 py-3 flex flex-col gap-3">
+            <div class="rounded-lg bg-[#1e1f2f] px-4 py-3 flex flex-col gap-3">
 
               <!-- Rule header -->
               <div class="flex items-center justify-between">

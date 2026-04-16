@@ -154,7 +154,7 @@
 
   <!-- Current step info -->
   {#if currentStep}
-    <div class="rounded-md border border-[#2a2a3d]bg-[#1a1929] px-3 py-2 text-sm font-mono">
+    <div class="rounded-md bg-[#1e1f2f] px-3 py-2 text-sm font-mono">
       <div class="flex flex-wrap gap-x-4 gap-y-1 text-[#50688c]">
         <span>
           text[<span class="text-[#8fa8c8]">{currentStep.textIndex}</span>]
@@ -180,7 +180,7 @@
 
   <!-- Match list -->
   {#if matches.length > 0}
-    <div class="rounded-md border border-[#2a2a3d]bg-[#1a1929] p-3">
+    <div class="rounded-md bg-[#1e1f2f] p-3">
       <p class="text-sm font-medium text-[#50688c] mb-2">All matches found so far</p>
       <div class="flex flex-wrap gap-2">
         {#each matches as m}

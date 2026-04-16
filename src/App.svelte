@@ -71,7 +71,7 @@
       </div>
 
       <!-- Tabs -->
-      <div class="flex gap-1 bg-[#1e1f2f] border border-[#2a2a3d] rounded-lg p-1">
+      <div class="flex gap-1 bg-[#1e1f2f] rounded-lg p-1">
         {#each ([
           { id: 'visualizer', label: 'Visualizer' },
           { id: 'benchmark', label: 'Benchmark' },
@@ -81,8 +81,8 @@
             onclick={() => switchTab(tab.id)}
             class="px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-200
                    {activeTab === tab.id
-                     ? 'bg-[#1e1f2f] text-[#8fa8c8] shadow border border-[#3a3b5c]'
-                     : 'text-[#50688c] hover:text-[#8fa8c8] hover:bg-[#252638]'}"
+                     ? 'bg-[#50688c] text-[#191826]'
+                     : 'text-[#50688c] hover:text-[#8fa8c8] hover:bg-[#50688c] hover:text-[#191826]'}"
           >
             {tab.label}
           </button>
@@ -107,11 +107,11 @@
       <div style="display: {activeTab === 'visualizer' ? 'block' : 'none'}">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
           <div class="lg:col-span-3 flex flex-col gap-6">
-            <div class="rounded-xl border border-[#2a2a3d] bg-[#1a1929] p-4">
+            <div class="rounded-xl bg-[#1e1f2f] p-4">
               <PatternInput onReady={handleReady} />
             </div>
             {#if isReady}
-              <div class="rounded-xl border border-[#2a2a3d] bg-[#1a1929] p-4">
+              <div class="rounded-xl bg-[#1e1f2f] p-4">
                 <StepController disabled={!isReady} />
               </div>
             {/if}
@@ -119,7 +119,7 @@
 
           <div class="lg:col-span-9 flex flex-col gap-6">
             {#if !isReady}
-              <div class="rounded-xl border border-[#2a2a3d] bg-[#1a1929] p-10
+              <div class="rounded-xl bg-[#1e1f2f] p-10
                           flex flex-col items-center justify-center gap-4 text-center">
                 <div class="w-16 h-16 rounded-full bg-[#191826] flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-[#50688c]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -141,7 +141,7 @@
                     { title: 'KMP Steps', desc: 'Watch each character comparison in real time' },
                     { title: 'Big-O Proof', desc: 'Benchmark on 1MB vs 10MB to confirm O(n+m)' },
                   ] as feature}
-                    <div class="rounded-lg border border-[#2a2a3d] bg-[#191826] p-3 text-left">
+                    <div class="rounded-lg bg-[#1e1f2f] p-3 text-left">
                       <p class="text-xs font-semibold text-[#8fa8c8]">{feature.title}</p>
                       <p class="text-xs text-[#3d5070] mt-0.5">{feature.desc}</p>
                     </div>
@@ -149,10 +149,10 @@
                 </div>
               </div>
             {:else}
-              <div class="rounded-xl border border-[#2a2a3d] bg-[#1a1929] p-4" style="min-height: 380px;">
+              <div class="rounded-xl bg-[#1e1f2f] p-4" style="min-height: 380px;">
                 <DFAGraph {dfa} {activeState} />
               </div>
-              <div class="rounded-xl border border-[#2a2a3d] bg-[#1a1929] p-4">
+              <div class="rounded-xl bg-[#1e1f2f] p-4">
                 <MatchHighlighter
                   text={currentText}
                   pattern={currentPattern}
@@ -168,7 +168,7 @@
       <!-- Benchmark — always mounted, hidden when inactive -->
       <div style="display: {activeTab === 'benchmark' ? 'block' : 'none'}">
         <div class="max-w-2xl mx-auto">
-          <div class="rounded-xl border border-[#2a2a3d] bg-[#1a1929] p-6">
+          <div class="rounded-xl bg-[#1e1f2f] p-6">
             <BenchmarkPanel pattern={currentPattern} text={currentText} />
             {#if !currentPattern}
               <p class="text-sm text-[#2e3d54] mt-4 text-center">
